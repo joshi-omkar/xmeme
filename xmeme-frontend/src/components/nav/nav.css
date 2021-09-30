@@ -1,0 +1,28 @@
+.nav{
+    display: flex;
+    flex-direction: row;
+    background-color: rgb(123, 180, 228);
+}
+
+.logo{
+    padding-left: 1.5rem;
+}
+
+.link{
+    display: flex;
+    flex-direction: row;
+    padding-top: 0.5rem;
+    padding-right: 5rem;
+    position: fixed;
+    right: 10%;
+    font-size: 1.3rem;
+
+}
+
+Link{
+    text-decoration: none;
+}
+
+.home{
+    padding-right: 4rem;
+}
