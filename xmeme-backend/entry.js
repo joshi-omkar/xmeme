@@ -1,26 +1,24 @@
-const mongoose = require('mongoose')
+const mongoose = require('mongoose');
+// const normalizeMongoose = require("normalize-mongoose")
 
-const memeSchema = new mongoose.Schema({
-
-    name:{
-        type:String,
-        require:true,
+// scheme for memes stored in database {name: "" , caption: "", url: ""}
+const MemeSchema = mongoose.Schema({
+    name: {
+        type: String,
+        required: true
     },
-
-    caption:{
-        type:String,
-        require:true,
+    caption: {
+        type: String,
+        required: true
     },
+    url: {
+        type: String,
+        required: true
+    }
+});
 
-    url:{
-        type:String,
-        unique:true,
-    },
+// to normalize json response to client ( _id -> id)
+// MemeSchema.plugin(normalizeMongoose);
 
-    
 
-})
-
-const Meme = mongoose.model("Meme", memeSchema);
-
-module.exports = Meme;
+module.exports = mongoose.model('Memes', MemeSchema);

@@ -1,61 +1,46 @@
-const express = require("express");
+const express = require('express');
 const mongoose = require("mongoose");
-const bodyParser = require('body-parser')
-const cors = require('cors');
-const Meme = require('./entry')
-const dotenv = require('dotenv')
-
 const app = express();
-
-app.use(express.json());
-app.use(bodyParser.json())
-app.use(cors({
-  origin: '*'
-}));
+const memesRoute = require('./routes');
+const bodyParser = require('body-parser');
+const cors = require('cors');
+const dotenv = require('dotenv')
 
 dotenv.config({path:'./config.env'})
 
-const DB = process.env.DATABASE
-try {
-    // Connect to the MongoDB cluster
-     mongoose.connect(
-      DB,
-      { useNewUrlParser: true, useUnifiedTopology: true },
-      () => console.log("Mongoose is connected")
-    );
-  
-  } catch (e) {
-    console.log("could not connect");
-  }
+//Defaults as per project requirements
+const PORT = process.env.PORT || 8081;
+const DATABASE = process.env.DATABASE;
 
-app.get('/',(req,res)=>{
-    res.send('hello from backend');
+
+//middleweres******************/
+//cors
+app.use(cors());
+
+//bodyparser
+app.use(bodyParser.urlencoded({
+    extended: true
+}));
+app.use(bodyParser.json());
+
+//routes
+app.use('/memes', memesRoute);
+
+//***********************************/
+
+//server home
+app.get('/', (req, res) => {
+    res.send('server is up and running');
 })
 
-app.get('/data',(req,res)=>{
-    Meme.find({}).then(
-        function(users){
-          res.send(users)
-        }
-      )
-      
-})
+//-------------------------------
 
-app.post('/entry',(req,res)=>{
-   const response = {
-       name:req.body.name,
-       caption:req.body.caption,
-       url:req.body.url,
-      
-   }
-   const meme = new Meme(response);
-   meme.save()
-   .then(()=>{
-       res.status(200).json({message:"sucessful"})
-   }).catch((err)=>res.status(500).json({message:"database problem"}))
+//DB Connection
+mongoose.connect(DATABASE, { useNewUrlParser: true, useUnifiedTopology: true }, () => {
+    console.log('DB is connected');
+});
 
-   })
-
-app.listen(8000, () => {
-    console.log("Server is running at port 8000");
-  });
+//server port deployment
+app.listen(PORT, () => {
+    console.log(`server is running on port ${PORT}`)
+});
