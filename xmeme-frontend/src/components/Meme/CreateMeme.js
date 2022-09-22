@@ -117,12 +117,11 @@ const CreateMeme = () => {
         <div className="container">
           <div className="row">
             {  
-            memeArray.map((currMeme, key) => {
+            memeArray.map((currMeme) => {
               return (
-                <div className="col-md-4 col-sm-6 col-12" key={currMeme.id}>
+                <div className="col-md-4 col-sm-6 col-12" key={currMeme._id} >
                   <SingleMeme
                     meme={currMeme}
-                    key={currMeme.id}
                     user={false}
                   />
                 </div>

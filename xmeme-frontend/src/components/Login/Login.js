@@ -24,7 +24,11 @@ const Login = ({ setLoginUser }) => {
 
   const login = async e => {
     e.preventDefault();
-    await axios
+
+    if(user.email === "" || user.password === ""){
+      setError("Please fill all feilds")
+    }else{
+      await axios
       .post("http://localhost:8081/userInfo/login", user)
       .then((res) => {
         if(res.data.message){
@@ -37,19 +41,19 @@ const Login = ({ setLoginUser }) => {
         }
       })
       .catch((error) => {
-        setError(error.response.data);
-        console.log(error.response.data)
-      });
-  };
 
-  console.log(error)
+        if(error.response){
+          setError("User Not Found")
+        }
+      });
+    }
+
+  };
 
   useEffect(() => {
     const loggedInUser = localStorage.getItem("token");
     if (loggedInUser) {
-      const foundUser = JSON.parse(JSON.stringify(loggedInUser));
-      setLoginUser(foundUser);
-      console.log(foundUser)
+      navigate('/')
     }
   }, []);
 
