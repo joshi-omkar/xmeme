@@ -9,6 +9,7 @@ const CreateMeme = () => {
   const [url, setUrl] = useState('')
   const [memeArray, setMemeArray] = useState([])
 
+  const token = localStorage.getItem('token')
   useEffect(() => {
     axios
       .get(process.env.REACT_APP_API_URL || "http://localhost:8081/memes")
@@ -22,19 +23,6 @@ const CreateMeme = () => {
         console.log(err);
       });
   }, []);
-
-  const deleteMeme = (memeId) => {
-    console.log(memeId);
-    axios
-      .delete("http://localhost:8081/memes/" + memeId)
-      .then(() => {memeArray.filter((index) => index._id !== memeId)
-      })
-      .catch((err) => {
-        alert(err);
-        console.log(err);
-      });
-  };
-
   const onSubmit = (event) => {
     event.preventDefault();
     
@@ -45,7 +33,11 @@ const CreateMeme = () => {
     };
     console.log(meme)
     axios
-      .post("http://localhost:8081/memes", meme)
+      .post("http://localhost:8081/memes", meme, {
+        headers: { Authorization: `Bearer ${token}` },
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      })
       .then((memeId) => {
         const newMeme = {
           id: memeId.data.id,
@@ -61,6 +53,9 @@ const CreateMeme = () => {
         alert(err);
         console.log(err);
       });
+      setName('')
+      setCaption('')
+      setUrl('')
   };
 
   return (
@@ -102,7 +97,7 @@ const CreateMeme = () => {
               className="form-control"
               required
               id="url"
-              type="url"
+              type="text"
               placeholder="Enter URL of your meme here"
               value={url}
               onChange={(e) => setUrl(e.target.value)} 
@@ -122,13 +117,13 @@ const CreateMeme = () => {
         <div className="container">
           <div className="row">
             {  
-            memeArray.map((currMeme) => {
+            memeArray.map((currMeme, key) => {
               return (
-                <div className="col-md-4 col-sm-6 col-12">
+                <div className="col-md-4 col-sm-6 col-12" key={currMeme.id}>
                   <SingleMeme
                     meme={currMeme}
-                    deleteMeme={deleteMeme}
                     key={currMeme.id}
+                    user={false}
                   />
                 </div>
               );
