@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import "./Register.css";
 import axios from "axios";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 
 const Register = () => {
-    const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const [user, setUser] = useState({
     name: "",
@@ -12,6 +12,10 @@ const Register = () => {
     password: "",
     reEnterPassword: "",
   });
+
+  const [error, setError] = useState("");
+  const [isCreated, setIsCreated] = useState(false);
+  const [created, setCreated] = useState("");
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -22,15 +26,24 @@ const Register = () => {
   };
 
   const register = () => {
-
     const { name, email, password, reEnterPassword } = user;
     if (name && email && password && password === reEnterPassword) {
-      axios.post("http://localhost:8081/userInfo/register", user).then((res) => {
-        alert(res.data.message)
-        navigate("/login");
-      });
+      axios
+        .post("http://localhost:8081/userInfo/register", user)
+        .then((res) => {
+          setIsCreated(true);
+          setCreated("Account Created Please Login");
+          setTimeout(() => {
+            navigate("/login");
+          }, 1000);
+        })
+        .catch((err) => {
+          if (err.response) {
+            setError("User Already Exists");
+          }
+        });
     } else {
-      alert("invlid input");
+      setError("invlid input");
     }
   };
 
@@ -65,6 +78,12 @@ const Register = () => {
         placeholder="Re-enter Password"
         onChange={handleChange}
       ></input>
+      {isCreated ? (
+        <div className="error">{created}</div>
+      ) : (
+        <div className="error">{error}</div>
+      )}
+
       <div className="button" onClick={register}>
         Register
       </div>

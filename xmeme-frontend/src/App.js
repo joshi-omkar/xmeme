@@ -23,7 +23,7 @@ function App() {
           <Routes>
             {/* {routes?.map((route) => <Route exact path={route.path} element={route.component}/>)} */}
             <Route exact path="/" element={<CreateMeme />}/>
-            <Route exact path="/edit/:id" element={<EditMeme />}/>
+            <Route exact path="/edit/:id/:memeId" element={<EditMeme />}/>
             <Route exact path={`/user/me`} element={<User/>}/>
             <Route exact path="/login" element={<Login setLoginUser={setLoginUser} />}/>
             <Route exact path="/register" element={<Register/>}/>

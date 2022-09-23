@@ -54,6 +54,32 @@ router.get("/:id", protect, async (req, res) => {
   }
 });
 
+router.get("/:id/:memeId", protect, async (req, res) => {
+  try {
+    const meme = await Meme.findById({_id: req.params.memeId})
+      const user = await User.findById(req.user.id)
+
+      if(req.params.id !== user.id){
+        res.status(401);
+        throw new Error('User Not Matched')
+      }
+
+      if(!user ){
+        res.status(401)
+        throw new Error('User not found')
+      }
+
+      if(meme.user.toString() !== user.id ){
+        res.status(401);
+        throw new Error('User Not Matched')
+      }
+
+    res.status(200).json(meme);
+  } catch (err) {
+    res.status(404).type("txt").send(err.message);
+  }
+});
+
 // REST api to respond to PATCH req , responds with 200 status if successful.
 router.patch("/:id/:memeId", protect, async (req, res) => {
   try {

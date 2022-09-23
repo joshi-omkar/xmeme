@@ -11,23 +11,23 @@ const SingleMeme = ({ meme, deleteMeme, user }) => {
           <h6 className="card-subtitle text-muted">{meme.caption} </h6>
 
           {user ? (
-            <>
-            <Link
-              to={"/edit/" + meme._id}
-              className="btn-sm btn-primary mr1"
-              id="edit"
-            >
-              Edit
-            </Link>
-            <Link
-              to="#"
-              className="btn-sm btn-danger"
-              id="delete"
-              onClick={() => deleteMeme(meme._id)}
-            >
-              Delete
-            </Link>
-            </>
+            <div className="EditDelete">
+              <Link
+                to={"/edit/" + meme.user+"/"+meme._id}
+                className="btn-sm btn-primary mr1"
+                id="edit"
+              >
+                Edit
+              </Link>
+              <Link
+                to="#"
+                className="btn-sm btn-danger"
+                id="delete"
+                onClick={() => deleteMeme(meme._id)}
+              >
+                Delete
+              </Link>
+            </div>
           ) : (
             ""
           )}
