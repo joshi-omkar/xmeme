@@ -9,10 +9,11 @@ const dotenv = require('dotenv')
 const path = require('path');
 
 // dotenv.config({path:path.resolve('./config.env')})
-dotenv.config({path:__dirname+'/.env'});
+dotenv.config({path:'./.env'});
 
 const PORT = process.env.PORT || 8081;
 const DATABASE = process.env.DATABASE;
+console.log(DATABASE)
 
 
 app.use(cors());
