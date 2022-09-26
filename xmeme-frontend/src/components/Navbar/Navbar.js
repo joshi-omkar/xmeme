@@ -1,14 +1,7 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Logo from "../assets/favicon-1.png";
 import "./Navbar.css";
-const Navbar = () => {
-  const navigate = useNavigate();
-
-  const logout = () => {
-    localStorage.removeItem("token");
-    navigate("/login");
-  };
-
+const Navbar = ({isLogedIn, logout}) => {
   return (
     <nav className="navigation">
       <div className="rightOfNav">
@@ -25,18 +18,27 @@ const Navbar = () => {
       </div>
 
       <div className="leftOfNav">
-        <div className="LinkToUser">
-          <Link to={`/user/me`}>User</Link>
-        </div>
-        <button
-          className="logoutButton"
-          type="submit"
-          onClick={() => {
-            logout();
-          }}
-        >
-          logout
-        </button>
+        {isLogedIn ? (
+          <>
+          <div className="LinkToUser">
+            <Link to={`/user/me`}>User</Link>
+          </div>
+          <button
+            className="logoutButton"
+            type="submit"
+            onClick={() => {
+              logout()
+            }}
+          >
+            logout
+          </button>
+          </>
+        ) : (
+          <div>
+            <Link className="linkToLogin" to={`/login`}>Login</Link>
+            <Link className="linkToRegister" to={`/register`}>Register</Link>
+          </div>
+        )}
       </div>
     </nav>
   );

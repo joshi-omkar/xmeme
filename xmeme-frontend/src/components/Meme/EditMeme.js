@@ -17,7 +17,6 @@ const EditMeme = (props) => {
   const token = localStorage.getItem("token");
 
   useEffect(() => {
-    console.log(id);
     axios
       .get("http://localhost:8081/memes/" + id + "/" + memeId, {
         headers: { Authorization: `Bearer ${token}` },

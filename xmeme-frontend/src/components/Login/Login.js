@@ -3,7 +3,7 @@ import "./login.css";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-const Login = ({ setLoginUser }) => {
+const Login = ({  setIsLogedIn  }) => {
   const navigate = useNavigate();
 
   const [user, setUser] = useState({
@@ -11,7 +11,9 @@ const Login = ({ setLoginUser }) => {
     password: "",
   });
 
-  const [isLogedIn, setIsLogedIn] = useState(false);
+
+
+  // const [isLogedIn, setIsLogedIn] = useState(false);
   const [error, setError] = useState("");
 
   const handleChange = (e) => {
@@ -34,7 +36,6 @@ const Login = ({ setLoginUser }) => {
         if(res.data.message){
             setError(res.data.message);
         }else{
-            setLoginUser(res.data._id);
             navigate("/");
             setIsLogedIn(true);
             localStorage.setItem("token", res.data.token)
@@ -54,6 +55,7 @@ const Login = ({ setLoginUser }) => {
     const loggedInUser = localStorage.getItem("token");
     if (loggedInUser) {
       navigate('/')
+      setIsLogedIn(true);
     }
   }, []);
 

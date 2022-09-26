@@ -6,8 +6,9 @@ const userInfoRoutes = require('./Routes/userInfo');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const dotenv = require('dotenv')
+const path = require('path');
 
-dotenv.config({path:'./config.env'})
+dotenv.config({path:path.resolve('./config.env')})
 
 const PORT = process.env.PORT || 8081;
 const DATABASE = process.env.DATABASE;
