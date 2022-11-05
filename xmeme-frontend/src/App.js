@@ -12,6 +12,10 @@ function App() {
 
   const [isLogedIn, setIsLogedIn] = useState(false);
 
+  localStorage.setItem("isLogedIn", isLogedIn);
+  console.log(JSON.parse(localStorage.getItem('isLogedIn')))
+  console.log(isLogedIn)
+
   function logout(){
     setIsLogedIn(false)
     localStorage.removeItem("token");
@@ -21,7 +25,7 @@ function App() {
   return (
     <div>
       <Router>
-        <Navbar isLogedIn={isLogedIn} logout={logout}/>
+        <Navbar isLogedIn={isLogedIn || JSON.parse(localStorage.getItem('isLogedIn')) === true} logout={logout}/>
         <PageWrapper>
           <Routes>
             <Route exact path="/" element={<CreateMeme />}/>

@@ -3,17 +3,15 @@ const mongoose = require("mongoose");
 const app = express();
 const memesRoute = require('./Routes/routes');
 const userInfoRoutes = require('./Routes/userInfo');
+const upload = require("./routes/upload");
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const dotenv = require('dotenv')
 const path = require('path');
-
-// dotenv.config({path:path.resolve('./config.env')})
 dotenv.config({path: path.resolve(__dirname, './.env') });
 
 const PORT = process.env.PORT || 8081;
 const DATABASE = process.env.DATABASE;
-
 
 app.use(cors());
 
@@ -24,6 +22,7 @@ app.use(bodyParser.json());
 
 app.use('/memes', memesRoute);
 app.use('/userInfo', userInfoRoutes);
+app.use("/file", upload);
 
 app.get('/', (req, res) => {
     res.send('server is up and running');

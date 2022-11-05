@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import SingleMeme from "./SingleMeme";
+import UploadFromDevice from "./UploadFromDevice";
 
 const CreateMeme = () => {
 
@@ -8,6 +9,7 @@ const CreateMeme = () => {
   const [caption, setCaption] = useState('')
   const [url, setUrl] = useState('')
   const [memeArray, setMemeArray] = useState([])
+  const [image, setImage] = useState([]);
 
   const token = localStorage.getItem('token')
   useEffect(() => {
@@ -59,7 +61,6 @@ const CreateMeme = () => {
   };
 
   return (
-    // form to obtain data from user
     <div className="container">
       <section>
         <div>
@@ -95,13 +96,13 @@ const CreateMeme = () => {
             <h6 id="heading">Meme URL</h6>
             <input
               className="form-control"
-              required
               id="url"
               type="text"
               placeholder="Enter URL of your meme here"
               value={url}
               onChange={(e) => setUrl(e.target.value)} 
             />
+            
           </div>
           <input
             className="btn btn-primary"
@@ -110,6 +111,7 @@ const CreateMeme = () => {
             value="Submit"
           />
         </form>
+        <UploadFromDevice setUrl = {setUrl}/>
         <br />
       </section>
 

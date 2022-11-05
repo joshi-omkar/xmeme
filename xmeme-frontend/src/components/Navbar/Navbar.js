@@ -13,7 +13,7 @@ const Navbar = ({isLogedIn, logout}) => {
             className="d-inline-block align-top"
             alt=""
           />
-          Xmeme
+          <h4>Xmeme</h4>
         </Link>
       </div>
 

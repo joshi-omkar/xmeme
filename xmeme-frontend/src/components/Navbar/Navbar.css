@@ -4,40 +4,54 @@
   width: 100%;
   background-color: #00ADB5;
   display: flex;
+  height: 70px;
 }
 
 .rightOfNav{
     width: 10%;
     position: relative;
-    left: 4%;
-    display: inline-block;
+    left: 1%;
     padding-top: .3125rem;
     padding-bottom: .3125rem;
     margin-right: 1rem;
-    font-size: 1.25rem;
+    font-size: 1em;
     line-height: inherit;
     white-space: nowrap;
-    cursor: pointer;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+}
+
+a:hover{
     text-decoration: none;
 }
 
 .LogoAndName{
     color: #EEEEEE !important;
+    text-decoration: none;
+    display: flex;
+
+}
+
+.LogoAndName>a :hover{
+    color: #EEEEEE !important;
+    text-decoration: none !important;
 }
 
 .leftOfNav{
     width: 90%;
     display: flex;
     position: relative;
-  justify-content: flex-end;
-  align-items: center;
-  right: 5%;
+    justify-content: flex-end;
+    align-items: center;
+    right: 2%;
+    padding: 10px;
 }
 
 .LinkToUser{
 
     background-color: #393E46;
-    padding: 4px;
+    padding: 1%;
     border-radius: 3px;
     margin-right: 10px;
 
@@ -46,7 +60,7 @@
 .LinkToUser>a{
     
     color: #EEEEEE !important;
-    font-size: 1rem;
+    font-size: 1em;
     text-decoration: none;
 }
 .LinkToUser:hover{
@@ -56,10 +70,11 @@
 .logoutButton{
     background-color: #393E46;
     border: none;
-    padding: 4px;
+    padding: 1%;
     color: #EEEEEE;
     cursor: pointer;    
     border-radius: 3px;
+    font-size: 1em;
 }
 
 .logoutButton:hover{
@@ -69,21 +84,21 @@
 
 .linkToRegister{
     background-color: #393E46;
-    padding: 4px;
+    padding: 1%;
     border-radius: 3px;
     margin-right: 10px;
     color: #EEEEEE !important;
-    font-size: 1rem;
+    font-size: 1em;
     text-decoration: none;
 }
 
 .linkToLogin{
     background-color: #393E46;
-    padding: 4px;
+    padding: 1%;
     border-radius: 3px;
     margin-right: 10px;
     color: #EEEEEE !important;
-    font-size: 1rem;
+    font-size: 1em;
 }
 
 .linkToLogin:hover{

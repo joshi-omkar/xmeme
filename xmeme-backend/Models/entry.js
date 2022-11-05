@@ -10,7 +10,7 @@ const MemeSchema = mongoose.Schema({
     },
     url: {
         type: String,
-        required: true
+        required: false
     },
     user:{
         type: mongoose.Schema.Types.ObjectId,
