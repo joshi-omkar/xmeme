@@ -22,18 +22,27 @@ const UploadFromDevice = ({setUrl}) => {
     }
   }
 
+  const hiddenFileInput = React.useRef(null);
+  
+  const handleClick = event => {
+    hiddenFileInput.current.click();
+  };
+
   return (
-    <div onSubmit={onSubmit}>
+    <div className="upload-image">
+      <button onClick={handleClick}>Upload from device</button>
       <input
         type={"file"}
-        accept={["image/png", "image/jpeg"]}
+        accept={["image/png", "image/jpeg", "image/jpg"]}
         onChange={(e) => {
           setImage(e.target.files[0]);
           console.log(e.target.files[0])
         }}
-        
+        ref={hiddenFileInput}
+        className="input-file"
+        style={{display:'none'}} 
       />
-      <input type={"submit"} value="Upload File"/>
+      <button id="submit-btn" className="btn btn-primary" type={"submit"} onClick={onSubmit}>Upload</button>
     </div>
   );
 };
