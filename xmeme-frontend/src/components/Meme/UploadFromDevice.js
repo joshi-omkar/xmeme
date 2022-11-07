@@ -30,7 +30,7 @@ const UploadFromDevice = ({setUrl}) => {
 
   return (
     <div className="upload-image">
-      <button onClick={handleClick}>Upload from device</button>
+      <button id="submit-btn" className="btn btn-primary" onClick={handleClick}>Upload from device</button>
       <input
         type={"file"}
         accept={["image/png", "image/jpeg", "image/jpg"]}
