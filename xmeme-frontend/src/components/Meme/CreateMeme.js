@@ -92,17 +92,19 @@ const CreateMeme = () => {
               onChange={(e) => setCaption(e.target.value)} 
             />
           </div>
-          <div className="form-group url-group">
+          <div className="form-group">
             <h6 id="heading">Meme URL</h6>
-            <input
-              className="form-control"
-              id="url"
-              type="text"
-              placeholder="Enter URL of your meme here"
-              value={url}
-              onChange={(e) => setUrl(e.target.value)} 
-            />
-            <UploadFromDevice setUrl = {setUrl}/>
+            <div className="url-group">
+              <input
+                className="form-control url-input"
+                id="url"
+                type="text"
+                placeholder="Enter URL of your meme here"
+                value={url}
+                onChange={(e) => setUrl(e.target.value)} 
+              />
+              <UploadFromDevice setUrl = {setUrl}/>
+            </div>
           </div>
           <input
             className="btn btn-primary"
