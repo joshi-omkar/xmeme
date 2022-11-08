@@ -1,4 +1,4 @@
-const upload = require("../middleware/upload");
+const upload = require("../Middleware/upload");
 const express = require("express");
 const Grid = require("gridfs-stream");
 const mongoose = require("mongoose");
