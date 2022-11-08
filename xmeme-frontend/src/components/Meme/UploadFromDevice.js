@@ -66,6 +66,9 @@ const UploadFromDevice = ({ setUrl }) => {
     } catch (error) {
       console.log(error);
     }
+
+    setOpen(false);
+    setImage(null)
   };
 
   const onClickRemoveImage = () => {

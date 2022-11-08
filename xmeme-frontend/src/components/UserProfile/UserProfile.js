@@ -1,15 +1,15 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
 import SingleMeme from "../Meme/SingleMeme";
-import './userPageStyle.css'
+import "./userPageStyle.css";
 
 function UserProfile() {
   const token = localStorage.getItem("token");
 
   const [response, setResponse] = useState({});
   const [userMeme, setUserMeme] = useState([]);
-  const [id, setId] = useState('')
-  const userData = async() => {
+  const [id, setId] = useState("");
+  const userData = async () => {
     await axios
       .get("http://localhost:8081/userInfo/me", {
         headers: { Authorization: `Bearer ${token}` },
@@ -17,14 +17,13 @@ function UserProfile() {
         "Content-Type": "application/json",
       })
       .then((res) => {
-        setResponse(res.data)
-        setId(res.data.id)
+        setResponse(res.data);
+        setId(res.data.id);
       })
-      .catch((err)=>{
-        console.log(err)
-      })
-
-  }
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   const memes = async () => {
     await axios
@@ -45,14 +44,14 @@ function UserProfile() {
   };
 
   const deleteMeme = (memeId) => {
-    console.log(memeId);
     axios
-      .delete("http://localhost:8081/memes/" + response.id +"/"+ memeId, {
+      .delete("http://localhost:8081/memes/" + response.id + "/" + memeId, {
         headers: { Authorization: `Bearer ${token}` },
         Accept: "application/json",
         "Content-Type": "application/json",
       })
-      .then(() => {userMeme.filter((index) => index._id !== memeId)
+      .then(() => {
+        userMeme.filter((index) => index._id !== memeId);
       })
       .catch((err) => {
         alert(err);
@@ -61,41 +60,36 @@ function UserProfile() {
   };
 
   useEffect(() => {
-
-    if(!id) return;
+    if (!id) return;
     memes();
-  }, [id]);
+  }, [userMeme]);
 
-  console.log(id)
-  useEffect(()=>{
-    userData()
-  },[])
-  
+  useEffect(() => {
+    userData();
+  }, []);
+
   return (
     <div className="userDetails">
-      <div style={{ fontSize: "50px" }}>
-        {response.name}
-      </div>
+      <div style={{ fontSize: "50px" }}>{response.name}</div>
       <section>
-      <div className="container">
-        <div className="row">
-          {userMeme.map((currMeme) => {
-            return (
-              <div className="col-md-4 col-sm-6 col-12" key={currMeme._id}>
-                <SingleMeme
-                  meme={currMeme}
-                  deleteMeme={deleteMeme}
-                  user={true}
-                  key={currMeme.id}
-                />
-              </div>
-            );
-          })}
+        <div className="container">
+          <div className="row">
+            {userMeme.map((currMeme) => {
+              return (
+                <div className="col-md-4 col-sm-6 col-12" key={currMeme._id}>
+                  <SingleMeme
+                    meme={currMeme}
+                    deleteMeme={deleteMeme}
+                    user={true}
+                    key={currMeme.id}
+                  />
+                </div>
+              );
+            })}
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
     </div>
-    
   );
 }
 
