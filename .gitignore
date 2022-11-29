@@ -51,8 +51,7 @@ typings/
 # Output of 'npm pack'
 *.tgz
 
-# dotenv environment variables file
-.env
+# dotenv environment variables files
 .env.development
 .env.production
 
