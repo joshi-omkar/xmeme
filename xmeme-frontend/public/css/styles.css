@@ -1,0 +1,129 @@
+#root {
+  font-family: "Dosis", serif;
+  background-color: #222831;
+}
+#heading {
+  font-weight: bolder;
+}
+
+#meme-img {
+  min-height: 120px;
+  max-height: 250px;
+}
+
+#edit-meme {
+  min-height: 200px;
+  max-height: 400px;
+  max-width: 200px;
+  min-width: 400px;
+  align-self: center;
+}
+
+div.card {
+  /* width: 340px; */
+  box-shadow: 0 4px 8px 0 rgba(115, 114, 114, 0.2),
+    0 6px 20px 0 rgba(118, 118, 118, 0.19);
+  text-align: center;
+  background-color: #0f0e0e;
+}
+
+#delete {
+  color: #eeeeee;
+  background-color: #ff2e63;
+  border: none;
+  margin-left: 5px;
+}
+
+#delete:hover {
+  background-color: #cd254f;
+  border: 1px solid #ff0040;
+}
+
+#link {
+  color: #eeeeee;
+  text-decoration: none;
+}
+#edit {
+  color: #eeeeee;
+  background-color: #393e46;
+  border: none;
+}
+
+#edit:hover {
+  background-color: #222831;
+  border: 1px solid #00adb5;
+}
+
+#submit-btn {
+  color: #eeeeee;
+  background-color: #393e46;
+  border: none;
+}
+
+#submit-btn:hover {
+  background-color: #222831;
+  border: 1px solid #00adb5;
+}
+
+.PageWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.EditDelete {
+  margin-top: 10px;
+}
+
+.editContainer {
+  /* width: 100%; */
+  padding: 15px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.url-group {
+  display: flex;
+  flex-direction: row;
+}
+
+.url-side-button {
+  background-color: #393e46 !important;
+  color: #eeeeee !important;
+  border-radius: 0rem 0.25rem 0.25rem 0rem !important;
+  height: 39px;
+}
+
+.url-side-button:focus {
+  box-shadow: none !important;
+}
+
+.url-input {
+  border-radius: 0.25rem 0rem 0rem 0.25rem !important;
+}
+
+.upload-image {
+  display: flex;
+  flex-direction: column;
+}
+
+.buttons-after-upload-image-model {
+  display: flex;
+  flex-direction: row;
+  margin-top: 30px;
+  justify-content: space-between;
+}
+
+.image-from-model {
+  width: 100%;
+}
+
+.upload-image-button {
+  display: flex;
+  justify-content: center;
+}
+
+.MuiBox-root {
+  border: none !important;
+}
