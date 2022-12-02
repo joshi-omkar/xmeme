@@ -52,7 +52,6 @@ const CreateMeme = () => {
           caption: caption,
           url: url,
         };
-        //state updates if meme is posted succesfully
           setMemeArray([newMeme, ...memeArray])
         
       })
@@ -64,8 +63,6 @@ const CreateMeme = () => {
       setCaption('')
       setUrl('')
   };
-
-  console.log(spinner)
 
   return (
     <div className="container">
