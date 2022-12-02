@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./login.css";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { USER_LOGIN } from "../../apiUrls";
 
 const Login = ({  setIsLogedIn  }) => {
   const navigate = useNavigate();
@@ -31,7 +32,7 @@ const Login = ({  setIsLogedIn  }) => {
       setError("Please fill all feilds")
     }else{
       await axios
-      .post("http://localhost:8081/userInfo/login", user)
+      .post(USER_LOGIN, user)
       .then((res) => {
         if(res.data.message){
             setError(res.data.message);

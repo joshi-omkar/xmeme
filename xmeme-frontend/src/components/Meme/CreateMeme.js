@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import SingleMeme from "./SingleMeme";
 import UploadFromDevice from "./UploadFromDevice";
+import { GET_ALL_MEMES } from "../../apiUrls";
+import Spinner from "../assets/Spinner";
 
 const CreateMeme = () => {
 
@@ -10,15 +12,18 @@ const CreateMeme = () => {
   const [url, setUrl] = useState('')
   const [memeArray, setMemeArray] = useState([])
   const [image, setImage] = useState([]);
+  const [spinner, setSpinner] = useState(false);    
+
 
   const token = localStorage.getItem('token')
   useEffect(() => {
+    setSpinner(true)
     axios
-      .get(process.env.REACT_APP_API_URL || "http://localhost:8081/memes")
+      .get(GET_ALL_MEMES)
       .then((response) => {
         const data = response.data;
-        console.log(response)
         setMemeArray(data)
+        setSpinner(false)
       })
       .catch((err) => {
         alert(err);
@@ -35,7 +40,7 @@ const CreateMeme = () => {
     };
     console.log(meme)
     axios
-      .post("http://localhost:8081/memes", meme, {
+      .post(GET_ALL_MEMES, meme, {
         headers: { Authorization: `Bearer ${token}` },
         Accept: "application/json",
         "Content-Type": "application/json",
@@ -59,6 +64,8 @@ const CreateMeme = () => {
       setCaption('')
       setUrl('')
   };
+
+  console.log(spinner)
 
   return (
     <div className="container">
@@ -131,6 +138,7 @@ const CreateMeme = () => {
               );
             })}
           </div>
+          {spinner ? (<Spinner/>):(<></>)}
         </div>
       </section>
     </div>

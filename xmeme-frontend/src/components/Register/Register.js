@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./Register.css";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { USER_REGISTER } from "../../apiUrls";
 
 const Register = () => {
   const navigate = useNavigate();
@@ -29,7 +30,7 @@ const Register = () => {
     const { name, email, password, reEnterPassword } = user;
     if (name && email && password && password === reEnterPassword) {
       axios
-        .post("http://localhost:8081/userInfo/register", user)
+        .post(USER_REGISTER, user)
         .then((res) => {
           setIsCreated(true);
           setCreated("Account Created Please Login");

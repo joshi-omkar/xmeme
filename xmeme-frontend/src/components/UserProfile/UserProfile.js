@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
+import { GET_ALL_MEMES, USER_INFO } from "../../apiUrls";
 import SingleMeme from "../Meme/SingleMeme";
 import "./userPageStyle.css";
 
@@ -11,7 +12,7 @@ function UserProfile() {
   const [id, setId] = useState("");
   const userData = async () => {
     await axios
-      .get("http://localhost:8081/userInfo/me", {
+      .get(USER_INFO, {
         headers: { Authorization: `Bearer ${token}` },
         Accept: "application/json",
         "Content-Type": "application/json",
@@ -27,7 +28,7 @@ function UserProfile() {
 
   const memes = async () => {
     await axios
-      .get("http://localhost:8081/memes/" + id, {
+      .get(GET_ALL_MEMES + id, {
         headers: { Authorization: `Bearer ${token}` },
         Accept: "application/json",
         "Content-Type": "application/json",
@@ -35,7 +36,6 @@ function UserProfile() {
       .then((res) => {
         const data = res.data;
         setUserMeme(res.data);
-        console.log(data);
       })
       .catch((err) => {
         alert(err);
@@ -45,7 +45,7 @@ function UserProfile() {
 
   const deleteMeme = (memeId) => {
     axios
-      .delete("http://localhost:8081/memes/" + response.id + "/" + memeId, {
+      .delete(GET_ALL_MEMES + response.id + "/" + memeId, {
         headers: { Authorization: `Bearer ${token}` },
         Accept: "application/json",
         "Content-Type": "application/json",
@@ -62,7 +62,9 @@ function UserProfile() {
   useEffect(() => {
     if (!id) return;
     memes();
-  }, [userMeme]);
+  }, [id]);
+
+  console.log(id)
 
   useEffect(() => {
     userData();

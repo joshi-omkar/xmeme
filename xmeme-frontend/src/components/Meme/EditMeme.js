@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 import SingleMeme from "./SingleMeme";
 import { useNavigate } from "react-router-dom";
+import { GET_ALL_MEMES } from "../../apiUrls";
 
 const EditMeme = (props) => {
   const { id, memeId } = useParams();
@@ -18,7 +19,7 @@ const EditMeme = (props) => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:8081/memes/" + id + "/" + memeId, {
+      .get(GET_ALL_MEMES + id + "/" + memeId, {
         headers: { Authorization: `Bearer ${token}` },
         Accept: "application/json",
         "Content-Type": "application/json",
@@ -45,7 +46,7 @@ const EditMeme = (props) => {
       url: url,
     };
     await axios
-      .patch("http://localhost:8081/memes/" + id + "/" + memeId, memePatch, {
+      .patch(GET_ALL_MEMES + id + "/" + memeId, memePatch, {
         headers: { Authorization: `Bearer ${token}` },
         Accept: "application/json",
         "Content-Type": "application/json",

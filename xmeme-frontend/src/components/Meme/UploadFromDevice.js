@@ -3,6 +3,7 @@ import axios from "axios";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Modal from "@mui/material/Modal";
+import { UPLOAD_FROM_DEVICE } from "../../apiUrls";
 
 const style = {
   position: "absolute",
@@ -57,7 +58,7 @@ const UploadFromDevice = ({ setUrl }) => {
     try {
       const response = await axios({
         method: "post",
-        url: "http://localhost:8081/file/upload",
+        url: UPLOAD_FROM_DEVICE,
         data: formData,
         headers: { "Content-Type": "multipart/form-data" },
       });
