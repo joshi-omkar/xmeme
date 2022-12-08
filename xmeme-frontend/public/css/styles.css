@@ -22,10 +22,10 @@
 div.card {
   /* width: 340px; */
   /* box-shadow: 0 4px 8px 0 rgba(115, 114, 114, 0.2), */
-    /* 0 6px 20px 0 rgba(118, 118, 118, 0.19); */
+  /* 0 6px 20px 0 rgba(118, 118, 118, 0.19); */
   text-align: center;
   background-color: #212121;
-  border-radius: .5rem !important;
+  border-radius: 0.5rem !important;
 }
 
 #delete {
@@ -46,24 +46,24 @@ div.card {
 }
 #edit {
   color: #eeeeee;
-  background-color: #393e46;
+  background-color: #212121;
   border: none;
 }
 
 #edit:hover {
-  background-color: #222831;
-  border: 1px solid #1DB954;
+  background-color: #535353;
+  border: 1px solid #1db954;
 }
 
 #submit-btn {
   color: #eeeeee;
-  background-color: #393e46;
+  background-color: #212121;
   border: none;
 }
 
 #submit-btn:hover {
-  background-color: #222831;
-  border: 1px solid #1DB954;
+  background-color: #535353;
+  border: 1px solid #1db954;
 }
 
 .PageWrapper {
@@ -90,7 +90,7 @@ div.card {
 }
 
 .url-side-button {
-  background-color: #393e46 !important;
+  background-color: #212121 !important;
   color: #eeeeee !important;
   border-radius: 0rem 0.25rem 0.25rem 0rem !important;
   height: 39px;
@@ -127,4 +127,64 @@ div.card {
 
 .MuiBox-root {
   border: none !important;
+}
+
+.no-border {
+  border: 0 !important;
+  box-shadow: none;
+}
+
+.form-input {
+  display: block;
+  width: 100%;
+  padding: 0.375rem 0.75rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #495057;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #ced4da;
+  border-radius: 0.25rem;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+
+.form-input::placeholder {
+  color: #6c757d;
+  opacity: 1;
+}
+
+.form-input:focus{
+  outline: none;
+}
+
+.posted-by{
+  display: flex;
+  justify-content: flex-start;
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.meme-caption{
+
+  margin-top: 3%;
+
+}
+
+.caption-like{
+  display: flex;
+  justify-content: space-between;
+}
+
+.like-button-count{
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 60px;
+}
+
+.like-count{
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-bottom: 0;
 }

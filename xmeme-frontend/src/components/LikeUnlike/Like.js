@@ -1,6 +1,9 @@
 import React, { useContext, useState } from "react";
 import { UserContext } from "../UserProfile/UserContext";
 import axios from "axios";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faHeart as LikeIcon } from '@fortawesome/free-regular-svg-icons'
+import {faHeart as UnlikeIcon} from '@fortawesome/free-solid-svg-icons'
 
 function Like({ memeId, userId }) {
   const [likeData, setLikeData] = useState([]);
@@ -66,9 +69,9 @@ function Like({ memeId, userId }) {
   return (
     <div>
       {userId.includes(userDetails.response.id) ? (
-        <button onClick={handleOnClickUnlike}>Unlike</button>
+        <FontAwesomeIcon onClick={handleOnClickUnlike} icon={UnlikeIcon} />
       ) : (
-        <button onClick={handleOnClickLike}>Like</button>
+        <FontAwesomeIcon onClick={handleOnClickLike} icon={LikeIcon} />
       )}
     </div>
   );
