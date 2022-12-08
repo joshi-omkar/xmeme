@@ -1,8 +1,8 @@
 const express = require("express");
 const router = express.Router();
 const Meme = require("../Models/entry");
-const User = require('../Models/user')
-const {protect} = require('../Middleware/authMiddleware')
+const User = require("../Models/user");
+const { protect } = require("../Middleware/authMiddleware");
 
 // REST api to respond to GET req , responds with 100 latest memes if successful.
 router.get("/", async (req, res) => {
@@ -41,11 +41,11 @@ router.post("/", protect, async (req, res) => {
 // REST api to respond to GET req on /memes/:id , responds with specific meme acc to id if successful.
 router.get("/:id", protect, async (req, res) => {
   try {
-    const meme = await Meme.find({user: req.params.id})
+    const meme = await Meme.find({ user: req.params.id });
 
-    if(!meme){
-      res.status(401)
-      throw new Error("User not found")
+    if (!meme) {
+      res.status(401);
+      throw new Error("User not found");
     }
 
     res.status(200).json(meme);
@@ -56,23 +56,23 @@ router.get("/:id", protect, async (req, res) => {
 
 router.get("/:id/:memeId", protect, async (req, res) => {
   try {
-    const meme = await Meme.findById({_id: req.params.memeId})
-      const user = await User.findById(req.user.id)
+    const meme = await Meme.findById({ _id: req.params.memeId });
+    const user = await User.findById(req.user.id);
 
-      if(req.params.id !== user.id){
-        res.status(401);
-        throw new Error('User Not Matched')
-      }
+    if (req.params.id !== user.id) {
+      res.status(401);
+      throw new Error("User Not Matched");
+    }
 
-      if(!user ){
-        res.status(401)
-        throw new Error('User not found')
-      }
+    if (!user) {
+      res.status(401);
+      throw new Error("User not found");
+    }
 
-      if(meme.user.toString() !== user.id ){
-        res.status(401);
-        throw new Error('User Not Matched')
-      }
+    if (meme.user.toString() !== user.id) {
+      res.status(401);
+      throw new Error("User Not Matched");
+    }
 
     res.status(200).json(meme);
   } catch (err) {
@@ -83,26 +83,25 @@ router.get("/:id/:memeId", protect, async (req, res) => {
 // REST api to respond to PATCH req , responds with 200 status if successful.
 router.patch("/:id/:memeId", protect, async (req, res) => {
   try {
-    
-    const meme = await Meme.findById({_id: req.params.memeId})
-      const user = await User.findById(req.user.id)
+    const meme = await Meme.findById({ _id: req.params.memeId });
+    const user = await User.findById(req.user.id);
 
-      if(req.params.id !== user.id){
-        res.status(401);
-        throw new Error('User Not Matched')
-      }
+    if (req.params.id !== user.id) {
+      res.status(401);
+      throw new Error("User Not Matched");
+    }
 
-      if(!user ){
-        res.status(401)
-        throw new Error('User not found')
-      }
+    if (!user) {
+      res.status(401);
+      throw new Error("User not found");
+    }
 
-      if(meme.user.toString() !== user.id ){
-        res.status(401);
-        throw new Error('User Not Matched')
-      }
-    
-      let response = await Meme.findByIdAndUpdate(
+    if (meme.user.toString() !== user.id) {
+      res.status(401);
+      throw new Error("User Not Matched");
+    }
+
+    let response = await Meme.findByIdAndUpdate(
       { _id: req.params.memeId },
       { $set: req.body },
       { new: true, useFindAndModify: false }
@@ -110,37 +109,77 @@ router.patch("/:id/:memeId", protect, async (req, res) => {
     res.status(200).json(response);
   } catch (err) {
     res.status(404).type("txt").send("Can not update");
-    console.log(err)
+    console.log(err);
   }
 });
 
 // REST api to respond to DELETE req , responds with 200 status if successful
-router.delete("/:id/:memeId",protect, async (req, res) => {
+router.delete("/:id/:memeId", protect, async (req, res) => {
   try {
-    const meme = await Meme.findById(req.params.memeId)
-      const user = await User.findById(req.user.id)
+    const meme = await Meme.findById(req.params.memeId);
+    const user = await User.findById(req.user.id);
 
-      console.log(user)
+    console.log(user);
 
-      if(req.params.id !== user.id){
-        res.status(401);
-        throw new Error('User Not Matched')
-      }
-      if(!user ){
-        res.status(401)
-        throw new Error('User not found')
-      }
+    if (req.params.id !== user.id) {
+      res.status(401);
+      throw new Error("User Not Matched");
+    }
+    if (!user) {
+      res.status(401);
+      throw new Error("User not found");
+    }
 
-      if(meme.user.toString() !== user.id){
-        res.status(401);
-        throw new Error('User Not Matched')
-      }
-    await meme.remove()
-    res.status(200).json({id: req.params.id})
+    if (meme.user.toString() !== user.id) {
+      res.status(401);
+      throw new Error("User Not Matched");
+    }
+    await meme.remove();
+    res.status(200).json({ id: req.params.id });
   } catch (err) {
     res.status(404).type("txt").send("Can Not Delete");
-    console.log(err)
+    console.log(err);
   }
+});
+
+router.put("/likes", protect, async (req, res) => {
+  Meme.findByIdAndUpdate(
+      req.body.memeId,
+      {
+        $push: { likes: req.user._id },
+      },
+      {
+        new: true,
+      }
+    ).exec((err, result)=>{
+      if(err){
+        return res.status(200).json({error:err})
+      }
+      else{
+        res.send(result)
+      }
+    })    
+   
+});
+
+router.put("/unlikes", protect, async (req, res) => {
+  Meme.findByIdAndUpdate(
+      req.body.memeId,
+      {
+        $pull: { likes: req.user._id },
+      },
+      {
+        new: true,
+      }
+    ).exec((err, result)=>{
+      if(err){
+        return res.status(200).json({error:err})
+      }
+      else{
+        res.send(result)
+      }
+    })    
+   
 });
 
 module.exports = router;

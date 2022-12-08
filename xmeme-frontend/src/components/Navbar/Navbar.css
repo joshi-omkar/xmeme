@@ -2,7 +2,7 @@
 
 .navigation {
   width: 100%;
-  background-color: #00ADB5;
+  background-color:#1db954;
   display: flex;
   height: 70px;
 }
@@ -50,7 +50,7 @@ a:hover{
 
 .LinkToUser{
 
-    background-color: #393E46;
+    background-color: #212121;
     padding: 1%;
     border-radius: 3px;
     margin-right: 10px;
@@ -58,17 +58,17 @@ a:hover{
 }
 
 .LinkToUser>a{
-    
     color: #EEEEEE !important;
     font-size: 1em;
     text-decoration: none;
 }
 .LinkToUser:hover{
-    background-color: #222831;
+    background-color: #535353;
+    border: 1px solid #121212;
 }
 
 .logoutButton{
-    background-color: #393E46;
+    background-color: #212121;
     border: none;
     padding: 1%;
     color: #EEEEEE;
@@ -78,12 +78,13 @@ a:hover{
 }
 
 .logoutButton:hover{
-    background-color: #222831;
+    background-color: #535353;
+    border: 1px solid #121212;
 }
 
 
 .linkToRegister{
-    background-color: #393E46;
+    background-color: #212121;
     padding: 1%;
     border-radius: 3px;
     margin-right: 10px;
@@ -93,7 +94,7 @@ a:hover{
 }
 
 .linkToLogin{
-    background-color: #393E46;
+    background-color: #212121;
     padding: 1%;
     border-radius: 3px;
     margin-right: 10px;
@@ -103,11 +104,11 @@ a:hover{
 
 .linkToLogin:hover{
     text-decoration: none;
-    background-color: #222831;
+    background-color: #535353;
 }
 
 .linkToRegister:hover{
     text-decoration: none;
-    background-color: #222831;
+    background-color: #535353;
 }
 

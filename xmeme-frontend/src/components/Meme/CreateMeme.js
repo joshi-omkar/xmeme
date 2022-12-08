@@ -11,7 +11,6 @@ const CreateMeme = () => {
   const [caption, setCaption] = useState('')
   const [url, setUrl] = useState('')
   const [memeArray, setMemeArray] = useState([])
-  const [image, setImage] = useState([]);
   const [spinner, setSpinner] = useState(false);    
 
 
@@ -75,7 +74,7 @@ const CreateMeme = () => {
           <div className="form-group">
             <h6 id="heading">Meme Owner</h6>
             <input
-              className="form-control"
+              className="form-input no-border"
               required
               id="name"
               type="text"
@@ -87,7 +86,7 @@ const CreateMeme = () => {
           <div className="form-group">
             <h6 id="heading">Caption</h6>
             <input
-              className="form-control"
+              className="form-input no-border"
               required
               id="caption"
               type="text"
@@ -100,7 +99,7 @@ const CreateMeme = () => {
             <h6 id="heading">Meme URL</h6>
             <div className="url-group">
               <input
-                className="form-control url-input"
+                className="form-input no-border url-input"
                 id="url"
                 type="text"
                 placeholder="Enter URL of your meme here"

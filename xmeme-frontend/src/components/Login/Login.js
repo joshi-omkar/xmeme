@@ -38,6 +38,7 @@ const Login = ({  setIsLogedIn  }) => {
             setError(res.data.message);
         }else{
             navigate("/");
+            window.location.reload(); 
             setIsLogedIn(true);
             localStorage.setItem("token", res.data.token)
         }

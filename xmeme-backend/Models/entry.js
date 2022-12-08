@@ -16,7 +16,10 @@ const MemeSchema = mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         require : true,
         ref: 'userdata'
-    }
+    },
+    likes:[{
+        type: mongoose.Schema.Types.ObjectId,
+    }]
 },{
     timestamps: true,
 });
