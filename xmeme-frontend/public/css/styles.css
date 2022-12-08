@@ -1,6 +1,6 @@
 #root {
   font-family: "Dosis", serif;
-  background-color: #222831;
+  background-color: #121212;
 }
 #heading {
   font-weight: bolder;
@@ -21,10 +21,11 @@
 
 div.card {
   /* width: 340px; */
-  box-shadow: 0 4px 8px 0 rgba(115, 114, 114, 0.2),
-    0 6px 20px 0 rgba(118, 118, 118, 0.19);
+  /* box-shadow: 0 4px 8px 0 rgba(115, 114, 114, 0.2), */
+    /* 0 6px 20px 0 rgba(118, 118, 118, 0.19); */
   text-align: center;
-  background-color: #0f0e0e;
+  background-color: #212121;
+  border-radius: .5rem !important;
 }
 
 #delete {
@@ -51,7 +52,7 @@ div.card {
 
 #edit:hover {
   background-color: #222831;
-  border: 1px solid #00adb5;
+  border: 1px solid #1DB954;
 }
 
 #submit-btn {
@@ -62,7 +63,7 @@ div.card {
 
 #submit-btn:hover {
   background-color: #222831;
-  border: 1px solid #00adb5;
+  border: 1px solid #1DB954;
 }
 
 .PageWrapper {

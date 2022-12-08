@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import Like from "../LikeUnlike/Like";
 
 const SingleMeme = ({ meme, deleteMeme, user }) => {
   return (
@@ -31,6 +32,8 @@ const SingleMeme = ({ meme, deleteMeme, user }) => {
           ) : (
             ""
           )}
+          <Like memeId={meme._id} userId={meme.likes}/>
+          <h4>{meme.likes.length}</h4>
         </div>
       </div>
       <br />

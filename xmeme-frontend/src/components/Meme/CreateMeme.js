@@ -11,7 +11,6 @@ const CreateMeme = () => {
   const [caption, setCaption] = useState('')
   const [url, setUrl] = useState('')
   const [memeArray, setMemeArray] = useState([])
-  const [image, setImage] = useState([]);
   const [spinner, setSpinner] = useState(false);    
 
 

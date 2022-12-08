@@ -10,7 +10,7 @@ function UserProfile() {
   const [response, setResponse] = useState({});
   const [userMeme, setUserMeme] = useState([]);
   const [id, setId] = useState("");
-  const userData = async () => {
+  const UserData = async () => {
     await axios
       .get(USER_INFO, {
         headers: { Authorization: `Bearer ${token}` },
@@ -64,10 +64,8 @@ function UserProfile() {
     memes();
   }, [id]);
 
-  console.log(id)
-
   useEffect(() => {
-    userData();
+    UserData();
   }, []);
 
   return (
