@@ -1,6 +1,10 @@
 {
   "dependencies": {
+<<<<<<< HEAD
     "@popperjs/core": "^2.11.6",
     "vercel": "^28.14.1"
+=======
+    "@popperjs/core": "^2.11.6"
+>>>>>>> f6d60bf5f7714dca3838514dfe58a16903e8bb78
   }
 }
